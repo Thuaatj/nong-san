@@ -6,6 +6,7 @@ import { Autoplay, Pagination, Navigation, EffectFade } from 'swiper/modules';
 import { useState, useEffect, SetStateAction } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from "next/link";
+import { Phone } from 'lucide-react';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -15,6 +16,7 @@ import 'swiper/css/effect-fade';
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -24,31 +26,32 @@ export default function Home() {
 
   const slides = [
     {
-      image: 'https://mymodernmet.com/wp/wp-content/uploads/2021/11/albert-dros-colorful-forest-landscape-thumbnail.jpg',
+      image: 'https://images.pexels.com/photos/34068339/pexels-photo-34068339/free-photo-of-scenic-tea-fields-of-phu-th-at-sunset.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       subtitle: 'Tinh túy từ thiên nhiên',
       title: 'NÔNG SẢN',
       highlight: 'XANH',
     },
     {
-      image: 'https://thumbs.dreamstime.com/b/misty-forest-path-lined-ancient-trees-lush-greenery-morning-light-serene-pathway-winds-towering-bathed-soft-362631825.jpg',
+      image: 'https://sungetawaystravel.com/wp-content/uploads/2025/04/Cashew-Industry-Vietnam-4-scaled.jpg',
       subtitle: 'Canh tác bền vững',
       title: 'THỰC PHẨM',
       highlight: 'SẠCH',
     },
     {
-      image: 'https://static.vecteezy.com/system/resources/previews/069/756/744/large_2x/lush-green-forest-enveloped-in-fog-creating-serene-and-tranquil-atmosphere-in-morning-light-free-photo.jpeg',
+      image: 'https://sungetawaystravel.com/wp-content/uploads/2023/06/Anh-Sapa-doi-che-O-Long-mua-xuan-ve-1-1024x683.jpg.webp',
       subtitle: 'Vì sức khỏe cộng đồng',
       title: 'GIÁ TRỊ',
       highlight: 'THẬT',
     },
   ];
-const menu = [
-  { label: "Trang chủ", href: "/" },
-  { label: "Sản phẩm", href: "/products" },
-  { label: "Giới thiệu", href: "/about" },
-  { label: "Blog", href: "/blog" }, // 👈 BLOG Ở ĐÂY
-  { label: "Liên hệ", href: "/contact" },
-];
+
+  const menu = [
+    { label: "Trang chủ", href: "/" },
+    { label: "Sản phẩm", href: "/products" },
+    { label: "Giới thiệu", href: "/about" },
+    { label: "Blog", href: "/blog" },
+    { label: "Liên hệ", href: "/contact" },
+  ];
 
   return (
     <>
@@ -61,50 +64,232 @@ const menu = [
           scrolled ? 'bg-white/95 backdrop-blur-xl shadow-2xl py-3' : 'bg-transparent py-6'
         }`}
       >
-        <nav className="container mx-auto px-6 flex justify-between items-center">
-          <motion.span
-            animate={{ scale: scrolled ? 0.9 : 1 }}
-            className={`text-4xl font-black tracking-tight ${
-              scrolled ? 'text-green-700' : 'text-white drop-shadow-2xl'
-            }`}
-          >
-            NÔNG SẢN XANH
-          </motion.span>
+        <nav className="container mx-auto px-6">
+          <div className="flex justify-between items-center">
+            {/* Logo bên trái */}
+            {/* Logo bên trái - CHỮ "NÔNG SẢN XANH" SÁNG HƠN BAN ĐẦU (khi chưa scroll) */}
+<motion.span
+  animate={{ scale: scrolled ? 0.9 : 1 }}
+  className={`text-4xl font-black tracking-tight whitespace-nowrap ${
+    scrolled 
+      ? 'text-green-700' 
+      : 'text-green-300 drop-shadow-2xl'  // Đổi thành màu xanh sáng (green-300) thay vì trắng
+  }`}
+>
+  NÔNG SẢN XANH
+</motion.span>
 
-
-          <ul className="hidden md:flex gap-12">
-            {menu.map((item, i) => (
-              <motion.li
-                key={item.href}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 + i * 0.1 }}
-              >
-                <Link
-                  href={item.href}
-                  className={`font-semibold text-lg transition ${
-                    scrolled
-                      ? "text-gray-800 hover:text-green-600"
-                      : "text-white hover:text-green-300"
-                  }`}
+            {/* Menu desktop - chính giữa */}
+            <ul className="hidden md:flex gap-12 absolute left-1/2 -translate-x-1/2">
+              {menu.map((item, i) => (
+                <motion.li
+                  key={item.href}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 + i * 0.1 }}
                 >
-                  {item.label}
-                </Link>
-              </motion.li>
-            ))}
-          </ul>
+                  <Link
+                    href={item.href}
+                    className={`font-semibold text-lg transition ${
+                      scrolled
+                        ? "text-gray-800 hover:text-green-600"
+                        : "text-white hover:text-green-300"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                </motion.li>
+              ))}
+            </ul>
 
+            {/* PHẦN BÊN PHẢI - Hotline + Social icons */}
+            <div className="hidden md:flex items-center gap-5 lg:gap-6">
+              {/* Hotline */}
+              <a
+                href="tel:0901862795"
+                className={`hidden lg:flex items-center gap-3 font-semibold text-lg transition ${
+                  scrolled ? 'text-green-700 hover:text-green-600' : 'text-white hover:text-green-300'
+                }`}
+              >
+                <Phone className="w-6 h-6" />
+                0901 862 795
+              </a>
+
+              {/* Icon mạng xã hội */}
+             <div className="flex items-center gap-4">
+  {/* Zalo */}
+  <a 
+    href="https://zalo.me/0901862795" // Thay bằng số/link Zalo thực tế
+    target="_blank" 
+    rel="noopener noreferrer" 
+    className="hover:scale-110 transition duration-300"
+  >
+    <Image 
+      src="https://1000logos.net/wp-content/uploads/2022/02/Zalo-Logo.png" 
+      alt="Zalo" 
+      width={36} 
+      height={36} 
+      className="rounded-full object-contain bg-white p-1 shadow-md" 
+    />
+  </a>
+
+  {/* Facebook */}
+  <a 
+    href="https://facebook.com/yourpage" // Thay bằng link Facebook thực tế
+    target="_blank" 
+    rel="noopener noreferrer" 
+    className="hover:scale-110 transition duration-300"
+  >
+    <Image 
+      src="https://www.freeiconspng.com/thumbs/facebook-logo-png/photos-facebook-logo-png-transparent-background-13.png" 
+      alt="Facebook" 
+      width={36} 
+      height={36} 
+      className="rounded-full object-contain bg-white p-1 shadow-md" 
+    />
+  </a>
+
+  {/* Instagram */}
+  <a 
+    href="https://instagram.com/youraccount" // Thay bằng link Instagram thực tế
+    target="_blank" 
+    rel="noopener noreferrer" 
+    className="hover:scale-110 transition duration-300"
+  >
+    <Image 
+      src="https://toppng.com/uploads/preview/instagram-logo-11716322843gm1jnosicz.png" 
+      alt="Instagram" 
+      width={36} 
+      height={36} 
+      className="rounded-full object-contain bg-white p-1 shadow-md" 
+    />
+  </a>
+</div>
+            </div>
+
+            {/* Hamburger button cho mobile */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden z-50 relative w-8 h-8"
+            >
+              <Image
+                src={mobileMenuOpen ? "https://www.clipartmax.com/png/middle/364-3643287_menu-open-menu-close-failure-icon.png" : "https://www.clipartmax.com/png/middle/36-365828_navbar-toggle-icon-menu-hamburger-png-white.png"}
+                alt="Menu toggle"
+                fill
+                className={`object-contain transition-all duration-300 ${scrolled && !mobileMenuOpen ? 'brightness-0 invert' : 'brightness-100'}`}
+              />
+            </button>
+          </div>
         </nav>
+
+        {/* Mobile Menu Overlay */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/80 z-40 md:hidden"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'tween', duration: 0.4 }}
+              className="fixed right-0 top-0 h-full w-80 bg-white shadow-2xl z-50 md:hidden flex flex-col"
+            >
+              <div className="p-8 border-b">
+                <span className="text-3xl font-black text-green-700">NÔNG SẢN XANH</span>
+              </div>
+              <ul className="flex flex-col p-8 gap-6">
+                {menu.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="text-xl font-semibold text-gray-800 hover:text-green-600 transition"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Hotline & Social ở dưới menu mobile */}
+              <div className="mt-auto p-8 border-t">
+  <a href="tel:0901862795" className="flex items-center gap-3 text-lg font-semibold text-green-700 mb-6">
+    <Phone className="w-6 h-6" />
+    0901 862 795
+  </a>
+  <div className="flex gap-6 justify-center">
+    {/* Zalo */}
+    <a
+      href="https://zalo.me/0901862795" // Thay bằng số Zalo thực tế
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:scale-110 transition duration-300"
+    >
+      <Image
+        src="https://1000logos.net/wp-content/uploads/2022/02/Zalo-Logo.jpg"
+        alt="Zalo"
+        width={48}
+        height={48}
+        className="rounded-full shadow-md"
+      />
+    </a>
+
+    {/* Facebook */}
+    <a
+      href="https://facebook.com/nongsanxanh" // Thay bằng link Facebook thực tế
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:scale-110 transition duration-300"
+    >
+      <Image
+        src="https://t4.ftcdn.net/jpg/03/16/95/93/360_F_316959354_x4fl2wlOmwyaCUQAkmDqCBwHtLSHsUTg.jpg"
+        alt="Facebook"
+        width={48}
+        height={48}
+        className="rounded-full shadow-md"
+      />
+    </a>
+
+    {/* Instagram */}
+    <a
+      href="https://instagram.com/nongsanxanh" // Thay bằng link Instagram thực tế
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:scale-110 transition duration-300"
+    >
+      <Image
+        src="https://1000logos.net/wp-content/uploads/2017/02/Instagram-Logo.png"
+        alt="Instagram"
+        width={48}
+        height={48}
+        className="rounded-full shadow-md"
+      />
+    </a>
+  </div>
+</div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.header>
 
-      {/* SLIDER */}
-      <section className="h-screen">
+      {/* SLIDER - giữ nguyên */}
+      <section className="h-screen pt-20 md:pt-0"> {/* pt-20 để tránh chồng header trên mobile */}
         <Swiper
           modules={[Autoplay, Pagination, Navigation, EffectFade]}
           effect="fade"
           speed={1000}
           loop
-          autoplay={{ delay: 2000 }}
+          autoplay={{ delay: 5000 }}
           pagination={{ clickable: true }}
           navigation
           onSlideChange={(swiper: { realIndex: SetStateAction<number>; }) => setActiveSlide(swiper.realIndex)}
@@ -113,10 +298,15 @@ const menu = [
           {slides.map((slide, index) => (
             <SwiperSlide key={index}>
               <div className="relative h-full w-full">
-                <Image src={slide.image} alt="" fill className="object-cover scale-105 animate-bg-zoom" />
+                <Image 
+                  src={slide.image} 
+                  alt={`Nông sản xanh Việt Nam - ${slide.highlight}`} 
+                  fill 
+                  className="object-cover scale-105 animate-bg-zoom" 
+                  priority={index === 0}
+                />
                 <div className="absolute inset-0 bg-black/35" />
 
-                {/* CONTENT CENTER */}
                 <div className="absolute inset-0 flex items-center justify-center text-center px-6">
                   <AnimatePresence mode="wait">
                     {activeSlide === index && (
@@ -128,7 +318,6 @@ const menu = [
                         transition={{ duration: 1 }}
                         className="text-white max-w-4xl"
                       >
-
                         <motion.h1
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -156,7 +345,6 @@ const menu = [
                           {slide.highlight}
                         </motion.h2>
 
-                        {/* BUTTON */}
                         <motion.div
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
@@ -197,7 +385,7 @@ const menu = [
           }
         }
         .animate-bg-zoom {
-          animation: bg-zoom 10s ease-out forwards;
+          animation: bg-zoom 12s ease-out forwards;
         }
       `}</style>
     </>
