@@ -26,7 +26,7 @@ export default function CustomerReviews() {
   }, []);
 
   return (
-    <section className="relative bg-gradient-to-br from-emerald-50 via-white to-emerald-50 overflow-hidden py-16 md:py-24 lg:py-32">
+    <section className="relative bg-gradient-to-br from-emerald-50 via-white to-emerald-50 overflow-hidden py-16 md:py-24 lg:py-32 ">
       {/* Background tinh tế nhẹ nhàng */}
       <Image
         src="https://thumbs.dreamstime.com/b/ai-generated-luxury-minimalist-botanical-artwork-green-cream-leaves-fine-gold-line-details-clean-neutral-background-424034364.jpg"
@@ -36,7 +36,7 @@ export default function CustomerReviews() {
         priority
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 lg:px-16 lg:mt-8">
         {/* Tiêu đề gọn gàng hơn */}
         <motion.div
           initial={{ opacity: 0, y: -40 }}
