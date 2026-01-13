@@ -1,7 +1,9 @@
 'use client';
 
 import AboutGreenAgriculture from '@/components/AboutGreenAgriculture';
+import BackToTopButton from '@/components/BackToTopButton';
 import ComboDeal from '@/components/ComboDeal';
+import ContactDock from '@/components/ContactDock';
 import CustomerReviews from '@/components/CustomerReviews';
 import FeaturedProducts from '@/components/FeaturedProducts';
 import Footer from '@/components/Footer';
@@ -16,6 +18,8 @@ export default function Home() {
     <main className="min-h-screen overflow-x-hidden">
       {/* Header cố định */}
       <Header />
+      <BackToTopButton />
+      <ContactDock />
       <WhyChooseUs />
       <Introduction />
       <HeroIntroSection />

@@ -12,8 +12,19 @@ export default function ComboDeal() {
   const bgY = useTransform(scrollYProgress, [0, 1], [0, 80]);
 
   const scrollToNext = () => {
-    document.getElementById('next-section')?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const el = document.getElementById('about');
+  if (!el) return;
+
+  const headerOffset = 80; // chỉnh theo chiều cao header fixed
+  const elementPosition = el.getBoundingClientRect().top;
+  const offsetPosition =
+    elementPosition + window.pageYOffset - headerOffset;
+
+  window.scrollTo({
+    top: offsetPosition,
+    behavior: 'smooth',
+  });
+};
 
   return (
     <section className="relative bg-white overflow-hidden py-20 lg:py-42">
@@ -66,7 +77,7 @@ export default function ComboDeal() {
                   className="w-full h-full"
                 >
                   <Image
-                    src="https://c8.alamy.com/comp/3B8TMX2/background-of-nuts-pecan-macadamia-brazil-nut-walnut-almonds-hazelnuts-pistachios-cashews-peanuts-pine-nutscopy-space-isolated-one-edge-o-3B8TMX2.jpg"
+                    src="https://file.hstatic.net/1000403382/file/cac-loai-hat-an-ngay-tet_58d18cbe60c842e588bc25dd0a682d8c_1024x1024.jpg"
                     alt="Combo hạt"
                     width={900}
                     height={700}
@@ -85,19 +96,18 @@ export default function ComboDeal() {
                 transition={{ type: 'spring', stiffness: 200 }}
                 viewport={{ once: true }}
                 className="
-  absolute
-  bottom-[-100px] sm:bottom-[-44px]
-  right-1/2 translate-x-1/2
+                  absolute
+                  bottom-[-100px] sm:bottom-[-44px]
+                  right-1/2 translate-x-1/2
 
-  lg:top-1/2 lg:right-[-100px] lg:bottom-auto
-  lg:translate-x-0 lg:-translate-y-1/2
+                  lg:top-1/2 lg:right-[-100px] lg:bottom-auto
+                  lg:translate-x-0 lg:-translate-y-1/2
 
-  bg-orange-500 hover:bg-orange-600
-  w-16 h-16 lg:w-20 lg:h-20
-  rounded-full flex items-center justify-center
-  text-white shadow-xl
-"
-
+                  bg-orange-500 hover:bg-orange-600
+                  w-16 h-16 lg:w-20 lg:h-20
+                  rounded-full flex items-center justify-center
+                  text-white shadow-xl
+                "
               >
                 <ChevronDown size={32} className="animate-bounce" />
               </motion.button>
@@ -122,7 +132,8 @@ export default function ComboDeal() {
                 className="w-full h-full"
               >
                 <Image
-                  src="https://c8.alamy.com/comp/3CBC8DX/healthy-dried-fruit-and-nut-mix-in-a-bowl-side-view-close-up-3CBC8DX.jpg"
+                  
+                  src="https://www.traviet.com/wp-content/uploads/2023/12/banner-cac-loai-hat-4-1200x750.jpg"
                   alt="Combo phụ"
                   width={1100}
                   height={420}
@@ -148,7 +159,7 @@ export default function ComboDeal() {
             font-medium text-green-700
           "
         >
-          Introduction
+          COMBO HẤP DẪN
         </motion.p>
       </div>
     </section>

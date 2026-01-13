@@ -1,32 +1,36 @@
-import { getPostBySlug } from "@/lib/posts";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
+import Header from "@/components/Header";
+import FooterGreen from "@/components/FooterGreen";
+import { getPostBySlug, getRelatedPosts } from "@/lib/wordpress";
+import BlogDetailClient from "./BlogDetailClient";
 
-export async function generateMetadata({
+export default async function BlogDetail({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const post = await getPostBySlug(params.slug);
+  const { slug } = await params;
 
-  return {
-    title: post?.title,
-    description: post?.excerpt,
-  };
-}
-
-export default async function BlogDetailPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const post = await getPostBySlug(params.slug);
-
+  const post = await getPostBySlug(slug);
   if (!post) return notFound();
 
+  const relatedPosts =
+    post.categories.length > 0
+      ? await getRelatedPosts(post.categories[0], post.id)
+      : [];
+
   return (
-    <article className="blog-content">
-      <h1>{post.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: post.content }} />
-    </article>
+    <>
+      <Header />
+
+      <main className="container mx-auto px-4 pt-32 pb-20">
+        <BlogDetailClient post={post} relatedPosts={relatedPosts} />
+      </main>
+
+      <FooterGreen />
+    </>
   );
 }

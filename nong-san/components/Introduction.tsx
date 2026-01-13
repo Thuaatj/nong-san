@@ -11,11 +11,21 @@ export default function Introduction() {
   ];
 
   const scrollToNext = () => {
-    document.getElementById('next-section')?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const el = document.getElementById('hero');
+  if (!el) return;
 
+  const headerOffset = 80; // chỉnh theo chiều cao header fixed
+  const elementPosition = el.getBoundingClientRect().top;
+  const offsetPosition =
+    elementPosition + window.pageYOffset - headerOffset;
+
+  window.scrollTo({
+    top: offsetPosition,
+    behavior: 'smooth',
+  });
+};
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section id="introduction" className="relative min-h-screen overflow-hidden">
       {/* ẢNH NỀN MỜ PHÍA DƯỚI */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat blur-md brightness-90 scale-110"
@@ -26,7 +36,7 @@ export default function Introduction() {
       />
 
       {/* NỘI DUNG */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-6 pt-40 pb-40">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-6 pt-30 pb-40">
         {/* KHỐI TRẮNG BỌC CHUNG */}
         <div className="relative bg-white rounded-[2.8rem] shadow-2xl p-6 md:p-10 lg:p-14 overflow-hidden">
           

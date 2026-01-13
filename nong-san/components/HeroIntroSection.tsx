@@ -6,7 +6,7 @@ import { Leaf, ShieldCheck, Sun } from 'lucide-react';
 
 export default function HeroCleanSection() {
   return (
-    <section className="relative overflow-hidden">
+    <section id="hero" className="relative overflow-hidden">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 min-h-[90vh]">
 
         {/* ===== LEFT CONTENT ===== */}

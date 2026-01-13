@@ -7,8 +7,7 @@ import { useState, useEffect, SetStateAction } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from "next/link";
 import { Phone, ShoppingCart } from 'lucide-react';
-import { useCart } from '@/context/CartContext';
-
+import { useCart } from "@/context/CartContext";
 
 
 import 'swiper/css';
@@ -29,25 +28,26 @@ export default function Home() {
 
 const slides = [
   {
-    image: 'https://images.squarespace-cdn.com/content/v1/58d6cc1e17bffcffb801edde/1573399888223-MD67RIOMS5W24LNCKAUD/image-asset.jpeg',
-    subtitle: 'Tinh túy từ thiên nhiên',
-    title: 'NÔNG SẢN',
-    highlight: 'XANH',
+    image: 'https://png.pngtree.com/background/20250121/original/pngtree-mixed-nuts-on-a-black-background-the-concept-of-healthy-eating-picture-image_15711434.jpg',
+    // subtitle: 'Tinh túy từ đất trời',
+    // title: 'NÔNG SẢN',
+    // highlight: 'XANH',
+  },
+  
+  {
+    image: 'https://images.unsplash.com/photo-1543158181-1274e5362710?fm=jpg&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWl4ZWQlMjBudXRzfGVufDB8fDB8fHww&ixlib=rb-4.1.0&q=60&w=3000',
+    // subtitle: 'Từ thiên nhiên đến bàn ăn',
+    // title: 'GIÁ TRỊ',
+    // highlight: 'THẬT',
   },
   {
-    
-     image: 'https://sungetawaystravel.com/wp-content/uploads/2025/04/Macadamia-Farming-Vietnam-2.webp',
-    subtitle: 'Canh tác bền vững',
-    title: 'THỰC PHẨM',
-    highlight: 'SẠCH',
-  },
-  {
-    image: 'https://365travel.asia/wp-content/uploads/2025/10/Breathing-views-in-Pu-Luong.webp',
-    subtitle: 'Vì sức khỏe cộng đồng',
-    title: 'GIÁ TRỊ',
-    highlight: 'THẬT',
+    image: 'https://foodinstitute.com/wp-content/uploads/2024/02/macadamia.jpg',
+    // subtitle: 'Giá trị từ hạt giống',
+    // title: 'THỰC PHẨM',
+    // highlight: 'SẠCH',
   },
 ];
+
 
    const menu = [
     { label: "Trang chủ", href: "/" },
@@ -58,7 +58,6 @@ const slides = [
   ];
 
   const { cartCount } = useCart();
-
 
   return (
     <>
@@ -183,10 +182,11 @@ const slides = [
               >
                 <ShoppingCart className="w-7 h-7" />
 
+                {/* Badge số lượng */}
                 {cartCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                     {cartCount}
-                  </span>
+                </span>
                 )}
               </Link>
             </div>
@@ -331,7 +331,8 @@ const slides = [
 
 
       {/* SLIDER - giữ nguyên */}
-      <section className="h-screen pt-20 md:pt-0"> {/* pt-20 để tránh chồng header trên mobile */}
+      <section className="h-[70vh] md:h-[55vh] pt-20 md:pt-0">
+ {/* pt-20 để tránh chồng header trên mobile */}
         <Swiper
           modules={[Autoplay, Pagination, Navigation, EffectFade]}
           effect="fade"
@@ -350,6 +351,8 @@ const slides = [
                   src={slide.image} 
                   alt={`Nông sản xanh Việt Nam - ${slide.highlight}`} 
                   fill 
+                  quality={90}
+                  sizes="100vw"
                   className="object-cover scale-105 animate-bg-zoom" 
                   priority={index === 0}
                 />
@@ -399,7 +402,7 @@ const slides = [
                           transition={{ delay: 1 }}
                           className="mt-10 flex justify-center gap-6 flex-wrap"
                         >
-                          <motion.button
+                          {/* <motion.button
                             whileHover={{ scale: 1.08, boxShadow: '0 0 40px rgba(253,224,71,0.9)' }}
                             className="bg-yellow-300 text-green-900 px-8 py-4 rounded-full font-bold text-lg"
                           >
@@ -411,7 +414,7 @@ const slides = [
                             className="bg-white/20 backdrop-blur px-8 py-4 rounded-full font-semibold text-lg"
                           >
                             Tư vấn ngay
-                          </motion.button>
+                          </motion.button> */}
                         </motion.div>
                       </motion.div>
                     )}

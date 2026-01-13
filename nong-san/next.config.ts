@@ -8,13 +8,6 @@ const nextConfig = {
         hostname: "**", // cho phép tất cả domain (tạm thời cho dev)
       },
     ],
-    // hoặc nếu muốn an toàn hơn, chỉ cho phép các domain bạn dùng:
-    // remotePatterns: [
-    //   { protocol: "https", hostname: "res.cloudinary.com" },
-    //   { protocol: "https", hostname: "suntechvn.vn" },
-    //   { protocol: "https", hostname: "images.unsplash.com" },
-    //   { protocol: "https", hostname: "flagcdn.com" },
-    // ],
   },
 };
 

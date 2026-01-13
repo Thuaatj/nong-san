@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 const reviews = [
   { name: 'Tdung', content: 'Hạt mới, thơm, ăn không bị hôi dầu. Mua thử mà ưng ghê!', avatar: 'https://randomuser.me/api/portraits/women/68.jpg' },
   { name: 'Đt Mai', content: 'Mình mua mix hạt về ăn thử vì đang muốn giảm đồ ngọt. Mở túi ra là thấy mùi hạt rất thơm, không có mùi dầu hay mùi lạ.', avatar: 'https://randomuser.me/api/portraits/women/44.jpg' },
-  { name: 'Meomeo', content: 'Biểu người lớn rất hợp vì là quà sức khỏe.', avatar: 'https://randomuser.me/api/portraits/le/5.jpg' },
+  { name: 'Meomeo', content: 'Biểu người lớn rất hợp vì là quà sức khỏe.', avatar: 'https://randomuser.me/api/portraits/women/22.jpg' },
   { name: 'Anh Tuấn', content: 'Sản phẩm chất lượng cao, đóng gói sang trọng. Rất phù hợp làm quà biếu.', avatar: 'https://randomuser.me/api/portraits/men/45.jpg' },
   { name: 'Chị Lan', content: 'Hạt rang vừa miệng, giữ nguyên độ giòn và hương vị tự nhiên. Sẽ tiếp tục ủng hộ!', avatar: 'https://randomuser.me/api/portraits/women/32.jpg' },
   { name: 'Minh Ngọc', content: 'Hạt óc chó và mắc ca tuyệt vời! Ăn rất nghiện và tốt cho sức khỏe.', avatar: 'https://randomuser.me/api/portraits/women/22.jpg' },
