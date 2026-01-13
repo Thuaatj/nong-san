@@ -10,7 +10,7 @@ const descriptionWords = `Chúng tôi cam kết mang đến những sản phẩm
 
 export default function AboutGreenAgriculture() {
   return (
-    <section className="relative bg-gradient-to-b from-emerald-50 to-white overflow-hidden py-16 md:py-24 lg:py-32">
+    <section id = "about" className="relative bg-gradient-to-b from-emerald-50 to-white overflow-hidden py-16 md:py-24 lg:py-32">
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* ===== CỘT TRÁI - CHỈ 2 ẢNH + CHỮ XUẤT HIỆN TỪ DƯỚI LÊN KHI HOVER ===== */}
@@ -31,20 +31,34 @@ export default function AboutGreenAgriculture() {
                 className="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-110"
               />
               {/* Overlay tối dần từ dưới lên */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              
-              {/* Chữ hiện từ dưới lên khi hover */}
-              <motion.div
-                initial={{ y: 80, opacity: 0 }}
-                whileHover={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, ease: 'easeOut' }}
-                className="absolute bottom-8 left-8 right-8 text-white"
+              <div
+                className="
+                  absolute inset-0
+                  bg-gradient-to-t from-black/80 via-black/30 to-transparent
+                  opacity-100 lg:opacity-0
+                  lg:group-hover:opacity-100
+                  transition-opacity duration-700
+                "
+              />
+          
+              <div
+                className="
+                  absolute bottom-6 left-6 right-6
+                  text-white
+                  opacity-100 translate-y-0
+                  lg:opacity-0 lg:translate-y-10
+                  lg:group-hover:opacity-100 lg:group-hover:translate-y-0
+                  transition-all duration-700
+                "
               >
-                <h3 className="text-3xl md:text-4xl font-black mb-3">Vườn trà hữu cơ</h3>
-                <p className="text-lg md:text-xl leading-relaxed opacity-95">
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-2">
+                  Vườn trà hữu cơ
+                </h3>
+                <p className="text-base sm:text-lg opacity-95">
                   Không thuốc trừ sâu, không phân hóa học – chỉ có thiên nhiên thuần khiết
                 </p>
-              </motion.div>
+              </div>
+
             </div>
 
             {/* Ảnh 2: Các loại hạt dinh dưỡng tự nhiên */}
@@ -57,20 +71,32 @@ export default function AboutGreenAgriculture() {
                 className="object-cover w-full h-full transition-transform duration-1000 group-hover:scale-110"
               />
               {/* Overlay tối dần từ dưới lên */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              
-              {/* Chữ hiện từ dưới lên khi hover */}
-              <motion.div
-                initial={{ y: 80, opacity: 0 }}
-                whileHover={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, ease: 'easeOut' }}
-                className="absolute bottom-8 left-8 right-8 text-white"
-              >
-                <h3 className="text-3xl md:text-4xl font-black mb-3">Hạt dinh dưỡng tự nhiên</h3>
-                <p className="text-lg md:text-xl leading-relaxed opacity-95">
-                  Tươi ngon, giàu dưỡng chất, an toàn tuyệt đối từ nông trại đến tay bạn
-                </p>
-              </motion.div>
+              <div   className="
+                absolute inset-0
+                bg-gradient-to-t from-black/80 via-black/30 to-transparent
+                opacity-100 lg:opacity-0
+                lg:group-hover:opacity-100
+                transition-opacity duration-700
+              "
+            />
+            <div
+              className="
+                absolute bottom-6 left-6 right-6
+                text-white
+                opacity-100 translate-y-0
+                lg:opacity-0 lg:translate-y-10
+                lg:group-hover:opacity-100 lg:group-hover:translate-y-0
+                transition-all duration-700
+              "
+            >
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-2">
+                Hạt dinh dưỡng tự nhiên
+              </h3>
+              <p className="text-base sm:text-lg opacity-95">
+                Tươi ngon, giàu dưỡng chất, an toàn tuyệt đối từ nông trại đến tay bạn
+              </p>
+            </div>
+        
             </div>
           </motion.div>
 

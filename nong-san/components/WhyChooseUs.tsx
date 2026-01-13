@@ -11,29 +11,27 @@ export default function WhyChooseUs() {
     { num: '04.', title: 'Giao nhanh tại TP. HCM' },
   ];
 
-  const scrollToNext = () => {
-    document.getElementById('next-section')?.scrollIntoView({ behavior: 'smooth' });
-  };
+const scrollToNext = () => {
+  const el = document.getElementById('introduction');
+  if (!el) return;
+
+  const headerOffset = 80; // chỉnh theo chiều cao header fixed
+  const elementPosition = el.getBoundingClientRect().top;
+  const offsetPosition =
+    elementPosition + window.pageYOffset - headerOffset;
+
+  window.scrollTo({
+    top: offsetPosition,
+    behavior: 'smooth',
+  });
+};
 
   return (
-    <section className="relative h-[80vh] md:h-[80vh] lg:h-[70vh] overflow-visible">
-      {/* Ảnh nền */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat blur-md brightness-85 scale-105"
-        style={{
-          backgroundImage:
-            'url(https://thumbs.dreamstime.com/b/golden-rice-terraces-glowing-sunrise-mu-cang-chai-vietnam-stunning-landscape-golden-rice-terraces-glowing-401157998.jpg)',
-        }}
-      />
-
-      {/* Phủ trắng */}
-      <div
-        className="absolute top-0 left-0 w-full bg-white"
-        style={{ height: '80vh' }}
-      />
+    <section className="relative overflow-hidden bg-white">
 
       {/* Nội dung */}
-      <div className="relative z-10 flex flex-col items-center justify-start min-h-screen px-6 pt-16 pb-40">
+      <div className="relative z-10 flex flex-col items-center justify-start min-h-screen md:min-h-0 px-4 pt-10 pb-10 md:pb-20">
+        {/* Tiêu đề */}
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -41,16 +39,16 @@ export default function WhyChooseUs() {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900">
             Tại sao nên chọn chúng tôi?
           </h2>
-          <p className="text-xl md:text-3xl font-medium text-green-700 mt-4">
+          <p className="text-xl sm:text-2xl lg:text-3xl font-medium text-green-700 mt-4">
             Nông sản xanh
           </p>
         </motion.div>
 
-        {/* Grid 2x2 */}
-        <div className="grid grid-cols-2 gap-6 md:gap-8 max-w-6xl w-full px-4 mb-20">
+        {/* Grid card */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl w-full mb-10 md:mb-4 lg:mb-6">
           {reasons.map((reason, index) => (
             <motion.div
               key={index}
@@ -64,22 +62,26 @@ export default function WhyChooseUs() {
                 boxShadow: '0 40px 80px -20px rgba(16,185,129,0.55)',
               }}
               className="
-                relative rounded-3xl p-7
+                relative rounded-3xl
+                p-4 sm:p-6 lg:p-7
                 bg-gradient-to-br from-emerald-700 via-green-600 to-emerald-500
                 shadow-xl overflow-hidden group
               "
             >
-              <span className="
-                absolute inset-0 -translate-x-full
-                group-hover:translate-x-full
-                transition-transform duration-1000
-                bg-gradient-to-tr from-transparent via-white/35 to-transparent skew-x-12
-              " />
+              {/* ánh sáng quét */}
+              <span
+                className="
+                  absolute inset-0 -translate-x-full
+                  group-hover:translate-x-full
+                  transition-transform duration-1000
+                  bg-gradient-to-tr from-transparent via-white/35 to-transparent skew-x-12
+                "
+              />
 
-              <span className="relative z-10 text-4xl font-black text-white block mb-3">
+              <span className="relative z-10 text-2xl sm:text-3xl lg:text-4xl font-black text-white block mb-3">
                 {reason.num}
               </span>
-              <p className="relative z-10 text-lg text-white">
+              <p className="relative z-10 text-base sm:text-lg text-white">
                 {reason.title}
               </p>
 
@@ -88,7 +90,7 @@ export default function WhyChooseUs() {
           ))}
         </div>
 
-        {/* 🔥 NÚT NỔI RANH GIỚI */}
+        {/* Nút tròn */}
         <motion.button
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -96,16 +98,17 @@ export default function WhyChooseUs() {
           transition={{ duration: 1, delay: 0.6 }}
           onClick={scrollToNext}
           className="
-            absolute left-1/2 -translate-x-1/2
-            top-[80vh] -mt-35 mt-[-40] lg:mt-[-140]
-            z-50
+            relative z-50
+            mt-6 md:-mt-2 lg:-mt-[-24px]
             bg-orange-500 hover:bg-orange-600
-            text-white rounded-full p-7
-            shadow-2xl transition-all
+            text-white rounded-full
+            p-4 sm:p-5 md:p-6 lg:p-7
+            shadow-2xl transition-all duration-300
             hover:shadow-orange-500/60
           "
+          aria-label="Cuộn xuống phần tiếp theo"
         >
-          <ChevronDown size={30} className="animate-bounce" />
+          <ChevronDown className="animate-bounce w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />
         </motion.button>
       </div>
     </section>

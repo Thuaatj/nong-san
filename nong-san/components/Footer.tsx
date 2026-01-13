@@ -31,10 +31,10 @@ export default function Footer() {
           {/* Cột 1: Thông tin liên hệ */}
           <div className="space-y-4">
             <p className="text-lg md:text-xl">
-              <span className="font-semibold">Hotline:</span> 0901 862 795
+              <span className="font-semibold">Hotline:</span> 0392806307
             </p>
             <p className="text-lg md:text-xl">
-              <span className="font-semibold">Email:</span> nutscornervn@gmail.com
+              <span className="font-semibold">Email:</span> nongsanxanh@gmail.com
             </p>
             <p className="text-lg md:text-xl">
               <span className="font-semibold">Website:</span>{' '}
@@ -83,7 +83,7 @@ export default function Footer() {
           <div className="flex flex-col items-center md:items-end space-y-10">
             {/* Nút Liên hệ Zalo */}
             <a
-              href="https://zalo.me/0901862795" // Thay bằng số Zalo thực tế
+              href="https://zalo.me/0392806307" // Thay bằng số Zalo thực tế
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-4 rounded-full shadow-xl transition transform hover:scale-105"
