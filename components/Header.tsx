@@ -52,9 +52,9 @@ const slides = [
    const menu = [
     { label: "Trang chủ", href: "/" },
     { label: "Sản phẩm", href: "/products" },
-    { label: "Giới thiệu", href: "/about" },
+    { label: "Giới thiệu", href: "#" },
     { label: "Blog", href: "/blog" },
-    { label: "Liên hệ", href: "/contact" },
+    { label: "Liên hệ", href: "#" },
   ];
 
   const { cartCount } = useCart();

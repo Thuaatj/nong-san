@@ -52,9 +52,9 @@ const slides = [
    const menu = [
     { label: "Trang chủ", href: "/" },
     { label: "Sản phẩm", href: "/products" },
-    { label: "Giới thiệu", href: "/about" },
+    { label: "Giới thiệu", href: "#" },
     { label: "Blog", href: "/blog" },
-    { label: "Liên hệ", href: "/contact" },
+    { label: "Liên hệ", href: "#" },
   ];
 
   const { cartCount } = useCart();
@@ -349,7 +349,7 @@ const slides = [
               <div className="relative h-full w-full">
                 <Image 
                   src={slide.image} 
-                  alt={`Nông sản xanh Việt Nam - ${slide.highlight}`} 
+                  alt={`Nông sản xanh Việt Nam`} 
                   fill 
                   quality={90}
                   sizes="100vw"
@@ -375,7 +375,7 @@ const slides = [
                           transition={{ delay: 0.5 }}
                           className="text-5xl md:text-8xl font-black"
                         >
-                          {slide.title}
+                          {/* {slide.title} */}
                         </motion.h1>
 
                         <motion.p
@@ -384,7 +384,7 @@ const slides = [
                           transition={{ delay: 0.3 }}
                           className="text-lg md:text-2xl mb-4"
                         >
-                          {slide.subtitle}
+                          {/* {slide.subtitle} */}
                         </motion.p>
 
                         <motion.h2
@@ -393,7 +393,7 @@ const slides = [
                           transition={{ delay: 0.7 }}
                           className="text-6xl md:text-9xl font-black text-green-300"
                         >
-                          {slide.highlight}
+                          {/* {slide.highlight} */}
                         </motion.h2>
 
                         <motion.div
